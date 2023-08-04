@@ -1,18 +1,20 @@
 package Order;
 
+import Inventory.InventoryService;
+
 public class CompleteOnCommand implements Comand{
 
-    KitchenDisplay kitchenDisplay;
     OrderService orderService;
     Integer index;
 
-    public CompleteOnCommand(KitchenDisplay kitchenDisplay,OrderService orderService,  Integer index){
-        this.kitchenDisplay = kitchenDisplay;
+    InventoryService inventoryService = new InventoryService();
+    public CompleteOnCommand(OrderService orderService,  Integer index, InventoryService inventoryService){
         this.orderService = orderService;
         this.index = index;
+        this.inventoryService = inventoryService;
     }
     @Override
     public void execute() {
-        kitchenDisplay.markCompleteOrderStatus(orderService, index);
+        orderService.markCompleteOrderStatus(orderService, index, inventoryService);
     }
 }

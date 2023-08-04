@@ -22,18 +22,6 @@ public class KitchenDisplay {
 
     }
 
-    public void markCompleteOrderStatus(OrderService orderService, int orderIndex){
-
-        List<Order> fillteredOrders = orderService.getMapTable().values().stream().filter(order -> order.getStatus() == Status.PENDING).toList();
-
-        for(Map.Entry<Integer, Order> entry: orderService.getMapTable().entrySet()){
-            if(entry.getValue() == fillteredOrders.get(orderIndex - 1)){
-                entry.getValue().setStatus(Status.COMPLETED);
-                return;
-            }
-        }
-    }
-
 
     public void displayOrdersForKitchen(List<Order> orders) {
         int index = 0;
